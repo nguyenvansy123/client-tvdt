@@ -1,0 +1,13 @@
+.editor-content {
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+
+.editor-content .ql-editor {
+    background-color: var(--white-color);
+}
+
+.editor-content .ql-container{
+    height: 300px;
+}

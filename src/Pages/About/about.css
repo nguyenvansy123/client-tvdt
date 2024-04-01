@@ -1,0 +1,33 @@
+.about-content{
+    max-width: 84rem;
+    height: 45rem;
+    margin: 0 auto;
+    background-color: white;
+    text-align: center;
+    padding: 5rem;
+    border: 1px solid;
+}
+
+.about-content h1{
+    height: auto;
+    font-size: 5rem;
+    font-family: serif;
+    display: block;
+    line-height: 6rem;
+    margin-bottom: 5rem;
+    font-weight: 500;
+}
+
+.about-content h1 span{
+    display: block;
+}
+
+.about-content p{
+    display: inline-block;
+    font-size: 2rem;
+    line-height: 2rem;
+    width: 45rem;
+    font-weight: 100;
+    font-family: fangsong;
+}
+

@@ -1,0 +1,247 @@
+#page-container {
+    padding-bottom: 60px;
+}
+
+.sidebar-widget__title {
+    color: #fff;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 5px;
+    background: #2b78bb;
+    border-bottom: 1px solid #dbdbdb;
+    font-weight: 500;
+    line-height: 40px;
+    font-size: 0.875rem;
+}
+
+.sidebar-widget__body {
+    padding: 10px 5px;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background: #fff;
+}
+
+#member-widget .btn {
+    color: #fff;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color);
+    box-shadow: inset 0 -2px 0 0 #087ea9;
+    border-radius: 20px;
+    padding: 0 25px;
+    line-height: 36px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#member-widget .btn.btn-login {
+    background-color: #ee3137;
+    border-color: #ee3038;
+    box-shadow: inset 0 -2px 0 0 #8f0611;
+}
+
+#sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar-menu>ul>li {
+    border-bottom: 1px solid #dedfe2;
+}
+
+#sidebar-menu ul li>a {
+    padding: 8px 5px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    color: #484848;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.6rem;
+}
+
+.book-counter {
+    color: var(--background-color);
+    ;
+    font-size: 0.75rem;
+    margin-left: 5px;
+    display: inline;
+    font-size: 1.3rem;
+}
+
+#main-content {
+    background: #fff;
+    margin-bottom: 40px;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+
+
+.btn_2 {
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color);
+    box-shadow: inset 0 -2px 0 0 #087ea9;
+    color: #fff;
+    display: inline-block;
+    padding: 11px 23px;
+    text-transform: capitalize;
+    line-height: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: .5s;
+    text-decoration: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.user-info {
+    padding-left: 1rem;
+    border-bottom: 1px solid #dedfe2;
+}
+
+.user-menu {
+    margin: 1rem 0 1rem;
+}
+
+.btn_3 {
+    color: var(--black-color);
+    text-transform: capitalize;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: .01s;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    line-height: 3rem;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+}
+
+.btn_3:hover {
+    background-color: var(--background-color);
+    color: white;
+    opacity: .5;
+}
+
+.btn_3.active,.btn_3.active:hover {
+    background-color: var(--background-color);
+    color: white;
+}
+
+/* ------------------- */
+.cs_modal {
+    background-color: #fef1f2;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+
+.cs_modal .modal-header {
+    background-color: #f7faff;
+    padding: 23px 30px;
+    border-bottom: 0 solid transparent;
+}
+
+.cs_modal .modal-header h5 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.cs_modal .modal-body {
+    padding: 0 30px 30px !important;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.cs_modal .modal-body input,
+.cs_modal .modal-body .nice_Select {
+    height: 50px;
+    line-height: 50px;
+    padding: 10px 20px;
+    border: 1px solid #f1f3f5;
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #fff;
+    width: 100%;
+    margin-bottom: 21px;
+}
+
+.cs_modal .modal-body .pass_forget_btn {
+    color: #707070;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.cs_modal .modal-body input,
+.cs_modal .modal-body .nice_Select {
+    height: 50px;
+    line-height: 50px;
+    padding: 10px 20px;
+    border: 1px solid #f1f3f5;
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #fff;
+    width: 100%;
+}
+
+.cs_check_box {
+    display: flex;
+    margin-top: 20px;
+}
+
+input#check_box {
+    width: auto;
+    height: auto;
+}
+
+.cs_check_box label {
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 0;
+}
+
+.cs_check_box .common_checkbox+label {
+    display: block;
+    cursor: pointer;
+    color: #7e7172;
+}
