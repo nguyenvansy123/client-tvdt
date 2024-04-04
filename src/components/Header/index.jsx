@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./header.css"
-import logo from "../../Images/logoRHM-1-2-768x189.png"
+// import logo from "../../Images/logoRHM-1-2-768x189.png"
 import { NavLink } from 'react-router-dom'
 import { FiAlignJustify } from "react-icons/fi";
 import { Container, Nav, Navbar } from "react-bootstrap"
@@ -17,7 +17,7 @@ export const Header = () => {
       <header id='header'>
         <div className="container">
           <section id="header__banner" className="my-4">
-            <img src={logo} alt="Logo" id="header__logo" />
+            <img src='../images/logoRHM-1-2-768x189.png' alt="Logo" id="header__logo" />
           </section>
 
         </div>
