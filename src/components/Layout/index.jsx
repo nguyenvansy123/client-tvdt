@@ -50,11 +50,11 @@ export const Layout = () => {
                                                     <p>chức danh : {auth.user.role}</p>
                                                     <button className='btn btn-primary fs-3' onClick={() => dispatch(signout(navigate))}>đăng xuất</button>
                                                 </div>
-                                                <div className="user-menu" id="userLogin">
+                                                {/* <div className="user-menu" id="userLogin">
                                                     <NavLink to="article-management" className="btn_3" >Quản lý bài viết</NavLink>
                                                     <NavLink to="profile" className="btn_3" >Profile</NavLink>
                                                     {renderLoggedInLinks()}
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                         )

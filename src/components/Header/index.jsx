@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./header.css"
-// import logo from "../../Images/logoRHM-1-2-768x189.png"
 import { NavLink } from 'react-router-dom'
 import { FiAlignJustify } from "react-icons/fi";
 import { Container, Nav, Navbar } from "react-bootstrap"
+import { useDispatch, useSelector } from 'react-redux'
+import { isUserLoggedIn } from '../../actions/auth.action'
 
 export const Header = () => {
-  const [showMenu, setShowMenu] = useState("")
+  const auth = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
-  const togglerMenu = () => {
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+  }, [auth.authenticate, dispatch]);
+
+
+  const renderUI = () => {
+    if ( !auth.loading && auth.authenticate)
+      return (<li className="nav-item">
+        <NavLink className="nav-link" to="/article-management">Bài viết</NavLink>
+      </li>)
+
+    return null
   }
-
 
   return (
     <>
@@ -35,9 +49,15 @@ export const Header = () => {
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/">Trang chủ</NavLink>
                     </li>
+                   
+                    {
+                      renderUI()
+                    } 
+                    
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/about">Giới thiệu</NavLink>
                     </li>
+                    
                   </ul>
                 </Nav>
               </Navbar.Collapse>

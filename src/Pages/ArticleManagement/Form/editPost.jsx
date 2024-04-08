@@ -121,9 +121,8 @@ export const EditPost = ({ ...props }) => {
                                         return <option value={_category._id} key={_category._id} >{_category.name}</option>
                                     })
                                 }
-
                             </select>
-                            {console.log(data)}
+            
                             <div className="box-category">
                                 <span className="box-category-link-with-title">Chọn ảnh tiêu đề </span>
                                 <input

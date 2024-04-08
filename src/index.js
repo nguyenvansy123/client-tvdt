@@ -12,8 +12,6 @@ import { SignupPage } from "./Pages/SignupPage"
 import { LoginPage } from './Pages/LoginPage';
 import { DetailPost } from './Pages/DetailPost';
 import { ForgetPasswordPage } from './Pages/ForgetPasswordPage';
-import { CategoryPage } from './Pages/CategoryPage';
-import { UserManagement } from './Pages/UserManagement';
 import { ArticleManagement } from './Pages/ArticleManagement';
 import { Profile } from './Pages/Profile';
 
@@ -29,9 +27,7 @@ const router = createBrowserRouter([
       { path: "signup", element: <SignupPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "forgetpasswordpage", element: <ForgetPasswordPage /> },
-      { path: "category", element: <CategoryPage /> },
-      { path: "user-management", element: <UserManagement /> },
-      { path: "danh-muc/:slug", element: <UserManagement /> },
+      { path: "danh-muc/:slug", element: <ArticleManagement /> },
       { path: "article-management", element: <ArticleManagement /> },
       { path: "profile", element: <Profile /> },
 

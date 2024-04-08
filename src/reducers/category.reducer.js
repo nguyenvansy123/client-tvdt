@@ -29,69 +29,6 @@ export default (state = initialState, action) => {
                 error: action.error
             }
             break;
-
-        case categoryConstants.ADD_CATEGORY_REQUEST:
-            state = {
-                ...state,
-                loading: true
-            }
-            break;
-        case categoryConstants.ADD_CATEGORY_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-            }
-            break;
-        case categoryConstants.ADD_CATEGORY_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-                error: action.error
-            }
-            break;
-
-        case categoryConstants.DELETE_CATEGORY_REQUEST:
-            state = {
-                ...state,
-                loading: true
-            }
-            break;
-        case categoryConstants.DELETE_CATEGORY_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-
-            }
-            break;
-        case categoryConstants.DELETE_CATEGORY_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-                error: action.error
-            }
-            break;
-
-        case categoryConstants.UPDATE_CATEGORY_REQUEST:
-            state = {
-                ...state,
-                loading: true
-            }
-            break;
-        case categoryConstants.UPDATE_CATEGORY_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-            }
-            break;
-        case categoryConstants.UPDATE_CATEGORY_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-                error: action.error
-            }
-            break;
-
-
     }
 
     return state

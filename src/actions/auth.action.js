@@ -44,51 +44,6 @@ export const signup = (user, navigate) => {
   }
 }
 
-// export const login = (user, ToggleLogin) => {
-//   return async (dispatch) => {
-//     try {
-//       // Dispatch action yêu cầu đăng nhập
-//       dispatch({ type: authConstants.LOGIN_REQUEST });
-
-//       // Thực hiện yêu cầu POST đến máy chủ
-//       const res = await axios.post(`admin/signin`, user).then(
-
-//       );
-//       if (res.status === 200) {
-//         // Nếu thành công, trích xuất token và dữ liệu người dùng
-//         const { token, user } = res.data;
-
-//         // Lưu token và dữ liệu người dùng vào local storage
-//         localStorage.setItem("token", token);
-//         localStorage.setItem("user", JSON.stringify(user));
-
-//         // Dispatch action đăng nhập thành công
-//         dispatch({
-//           type: authConstants.LOGIN_SUCCESS,
-//           payload: {
-//             token,
-//             user,
-//           },
-//         });
-
-//         // Gọi hàm ToggleLogin (giả sử đây là hàm để chuyển đổi trạng thái đăng nhập)
-//         ToggleLogin();
-//       } else if (res.status === 400) {
-//         // Nếu máy chủ phản hồi với mã trạng thái 400, dispatch action đăng nhập thất bại
-//         dispatch({
-//           type: authConstants.LOGIN_FAILURE,
-//           payload: { error: res.data.error },
-//         });
-//       }
-//       // Kiểm tra trạng thái của phản hồi
-
-//     } catch (error) {
-//       // Xử lý bất kỳ lỗi nào xảy ra trong quá trình bất đồng bộ (ví dụ: lỗi mạng)
-//       console.error("Lỗi trong quá trình đăng nhập:", error);
-//     }
-//   };
-// };
-
 export const login = (user, navigate) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGIN_REQUEST });
@@ -162,23 +117,3 @@ export const signout = (navigate) => {
     }
   };
 };
-
-// export const getAllUsers = () => {
-//   return async (dispatch) => {
-//     try {
-//       const res = await axios.get("/user");
-//       if (res.status === 200) {
-//         const users = res.data;
-//         dispatch({
-//           type: authConstants.GET_ALL_USERS_SUCCESS,
-//           payload: users,
-//         });
-//       }
-//     } catch (error) {
-//       dispatch({
-//         type: authConstants.GET_ALL_USERS_FAILURE,
-//         payload: { error },
-//       });
-//     }
-//   };
-// };
