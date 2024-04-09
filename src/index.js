@@ -14,6 +14,9 @@ import { DetailPost } from './Pages/DetailPost';
 import { ForgetPasswordPage } from './Pages/ForgetPasswordPage';
 import { ArticleManagement } from './Pages/ArticleManagement';
 import { Profile } from './Pages/Profile';
+import { PrivateRoute } from './components/HOC/PrivateRoute';
+import isLogin from './helpers/isLogin';
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +27,11 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "post/:id", element: <DetailPost /> },
       { path: "about", element: <About /> },
-      { path: "signup", element: <SignupPage /> },
-      { path: "login", element: <LoginPage /> },
+      { path: "signup", element: isLogin() ? <Navigate to="/" replace={true} /> : <SignupPage /> },
+      { path: "login", element: isLogin() ? <Navigate to="/" replace={true} /> : <LoginPage /> },
       { path: "forgetpasswordpage", element: <ForgetPasswordPage /> },
       { path: "danh-muc/:slug", element: <ArticleManagement /> },
-      { path: "article-management", element: <ArticleManagement /> },
+      { path: "article-management", element: <PrivateRoute component={ArticleManagement} /> },
       { path: "profile", element: <Profile /> },
 
     ]
@@ -36,7 +39,6 @@ const router = createBrowserRouter([
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 
 root.render(
   <Provider store={store}>

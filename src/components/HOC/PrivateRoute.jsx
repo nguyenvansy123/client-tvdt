@@ -1,17 +1,16 @@
 import React from 'react'
-import { useEffect } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+export const PrivateRoute = ({ component: Component }) => {
 
-const PrivateRoute = ({ element: Element, isAuth, ...rest }) => {
-    const navigate = useNavigate();
+    const getToken = () => window.localStorage.getItem("token")
 
-    useEffect(() => {
-        if (!isAuth) {
-            navigate("/signin", { replace: true });
-        }
-    }, [isAuth, navigate]);
+    function CheckToken(Component) {
 
-    return isAuth ? <Outlet /> : <h1>Authenticated</h1>;
-};
+        if (!getToken())
+            return <Navigate to="/login" replace={true} />;
 
-export default PrivateRoute;
+        return <Component />;
+    }
+
+    return CheckToken(Component)
+}
