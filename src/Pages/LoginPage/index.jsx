@@ -4,6 +4,7 @@ import { login } from '../../actions/auth.action';
 import "./LoginForm.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { EnterKeyListener } from '../../components/HOC/EnterKeyListener';
+import { Loader } from '../../components/HOC/Loader';
 
 
 
@@ -84,8 +85,10 @@ export const LoginPage = () => {
                                             <div className="feedback invalid-feedback ">Chưa nhập địa chỉ email</div>
                                             {validationErrors.password && <div className="feedback invalid-feedback feedback-active">{validationErrors.password}</div>}
                                         </div>
-                                        <a className="btn_2 w-100 text-center" onClick={handleRegister}>
-                                            Đăng nhập
+                                        <a className="btn_2 w-100 text-center" onClick={handleRegister} disabled={auth.authenticating} >
+                                            <Loader isLoading={auth.authenticating} >
+                                               { 'Đăng nhập'}
+                                            </Loader>
                                         </a>
 
                                         <div className="text-center">

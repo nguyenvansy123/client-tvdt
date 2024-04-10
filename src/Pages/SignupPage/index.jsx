@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signup } from '../../actions/auth.action';
 import "./style.css"
 import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../components/HOC/Loader';
 
 
 export const SignupPage = () => {
@@ -133,8 +134,10 @@ export const SignupPage = () => {
                                         </div>
 
 
-                                        <a className="btn_2 w-100 text-center cursor-pointer" onClick={handleRegister}>
-                                            Đăng ký
+                                        <a className="btn_2 w-100 text-center cursor-pointer" onClick={handleRegister} disabled={auth.authenticating}>
+                                            <Loader isLoading={auth.authenticating} >
+                                                Đăng ký
+                                            </Loader>
                                         </a>
                                     </form>
                                 </div>
