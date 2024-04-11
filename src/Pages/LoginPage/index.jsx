@@ -5,6 +5,7 @@ import "./LoginForm.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { EnterKeyListener } from '../../components/HOC/EnterKeyListener';
 import { Loader } from '../../components/HOC/Loader';
+import { useEffect } from 'react';
 
 
 
@@ -87,7 +88,7 @@ export const LoginPage = () => {
                                         </div>
                                         <a className="btn_2 w-100 text-center" onClick={handleRegister} disabled={auth.authenticating} >
                                             <Loader isLoading={auth.authenticating} >
-                                               { 'Đăng nhập'}
+                                                {'Đăng nhập'}
                                             </Loader>
                                         </a>
 

@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
             state = {
                 ...state,
                 authenticate: false,
+                authenticating: false,
                 error: action.payload.error
             }
             break
