@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
 import "./style.css"
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { passwordReset } from '../../actions';
 
 
 
 export const ForgetPasswordPage = () => {
 
-    const [isShowLoginForm, setIsShowLoginForm] = useState(true);
-    const [isShowSignupForm, setIsShowSignupForm] = useState(false);
+    const [email, setEmail] = useState("");
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
 
-
-
-    const ToggleLogin = () => {
-
-        setIsShowLoginForm(!isShowLoginForm)
+    const ResetPassword = () => {
+        dispatch(passwordReset(navigate,email))
     }
-
-
-    const ToggleSignup = () => {
-
-        setIsShowSignupForm(!isShowSignupForm)
-    }
-
 
     return (
         <div className="container-fluid p-0">
@@ -34,18 +28,19 @@ export const ForgetPasswordPage = () => {
                                         <h5 className="modal-title">Quên mật khẩu</h5>
                                     </div>
                                     <div className="modal-body">
-                                        <form>
+                                        <div>
                                             <div className="mb-3">
                                                 <input
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter your email"
+                                                    onChange={(e) => setEmail(e.target.value)}
                                                 />
                                             </div>
-                                            <a href="#" className="btn_2 w-100 text-center">
+                                            <a href="#" onClick={ResetPassword} className="btn_2 w-100 text-center">
                                                 Gửi
                                             </a>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
 

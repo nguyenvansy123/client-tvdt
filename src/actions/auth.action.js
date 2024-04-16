@@ -8,11 +8,11 @@ export const signup = (user, navigate) => {
 
     dispatch({ type: authConstants.SIGNUP_REQUEST })
     const res = await axios.post("/signup", user, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
-      }
-      ).then((res) => {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+    }
+    ).then((res) => {
       if (res.status === 201) {
 
         dispatch({ type: authConstants.SIGNUP_SUCCESS })
@@ -117,3 +117,40 @@ export const signout = (navigate) => {
     }
   };
 };
+
+export const passwordReset = (navigate,email) => { 
+  return async (dispatch) => {
+    dispatch({ type: authConstants.PASSWORD_RESET_REQUEST });
+    console.log(email);
+    const res = await axios.post('/password-reset',email);
+    if (res.status === 200) {
+      dispatch({ type: authConstants.PASSWORD_RESET_SUCCESS });
+      // navigate("/reset-password")
+      // toast.success("vui lòng kiểm tra email để thay đổi mật khẩu")
+    } else {
+      dispatch({
+        type: authConstants.PASSWORD_RESET_FAILURE,
+        payload: { error: res.data.error }
+      });
+      // toast.error("email không hợp lệ")
+    }
+  };
+}
+
+export const changePassword = (navigate, id) => {
+  return async (dispatch) => {
+    dispatch({ type: authConstants.CHANGE_PASSWORD_REQUEST });
+    const res = await axios.post(`/change-pasword/${id}`);
+    if (res.status === 200) {
+      dispatch({ type: authConstants.CHANGE_PASSWORD_SUCCESS });
+      navigate("/login")
+      toast.success("đã thay đổi mật khẩu thành công")
+    } else {
+      dispatch({
+        type: authConstants.CHANGE_PASSWORD_FAILURE,
+        payload: { error: res.data.error }
+      });
+      toast.error("đổi mật khẩu không thành công")
+    }
+  };
+}

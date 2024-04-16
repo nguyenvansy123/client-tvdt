@@ -17,6 +17,7 @@ import { Profile } from './Pages/Profile';
 import { PrivateRoute } from './components/HOC/PrivateRoute';
 import isLogin from './helpers/isLogin';
 import { Navigate } from "react-router-dom";
+import { ResetPassword } from './Pages/ResetPassword';
 
 const router = createBrowserRouter([
   {
@@ -32,10 +33,10 @@ const router = createBrowserRouter([
       { path: "forgetpasswordpage", element: <ForgetPasswordPage /> },
       { path: "danh-muc/:slug", element: <ArticleManagement /> },
       { path: "article-management", element: <PrivateRoute component={ArticleManagement} /> },
-      { path: "profile", element: <Profile /> },
-
+      { path: "profile", element: <Profile /> }
     ]
-  }
+  },
+  { path: "reset-password", element: <ResetPassword /> }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

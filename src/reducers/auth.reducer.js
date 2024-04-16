@@ -89,6 +89,46 @@ export default (state = initialState, action) => {
             };
             break;
 
+        case authConstants.PASSWORD_RESET_REQUEST:
+            state = {
+                ...state,
+                loading: true
+            }
+            break;
+        case authConstants.PASSWORD_RESET_SUCCESS:
+            state = {
+                ...state,
+                loading: false
+            }
+            break;
+        case authConstants.PASSWORD_RESET_FAILURE:
+            state = {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
+            break;
+
+        case authConstants.CHANGE_PASSWORD_REQUEST:
+            state = {
+                ...state,
+                loading: true
+            }
+            break;
+        case authConstants.CHANGE_PASSWORD_SUCCESS:
+            state = {
+                ...state,
+                loading: false
+            }
+            break;
+        case authConstants.CHANGE_PASSWORD_FAILURE:
+            state = {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
+            break;
+
         default:
             break;
     }
