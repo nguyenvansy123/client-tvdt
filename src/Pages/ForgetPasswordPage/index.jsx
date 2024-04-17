@@ -28,10 +28,10 @@ export const ForgetPasswordPage = () => {
                                         <h5 className="modal-title">Quên mật khẩu</h5>
                                     </div>
                                     <div className="modal-body">
-                                        <div>
+                                        <form>
                                             <div className="mb-3">
                                                 <input
-                                                    type="text"
+                                                    type="email"
                                                     className="form-control"
                                                     placeholder="Enter your email"
                                                     onChange={(e) => setEmail(e.target.value)}
@@ -40,7 +40,7 @@ export const ForgetPasswordPage = () => {
                                             <a href="#" onClick={ResetPassword} className="btn_2 w-100 text-center">
                                                 Gửi
                                             </a>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
 

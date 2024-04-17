@@ -122,35 +122,40 @@ export const passwordReset = (navigate,email) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.PASSWORD_RESET_REQUEST });
     console.log(email);
-    const res = await axios.post('/password-reset',email);
+    const res = await axios.post('/password-reset',{email});
     if (res.status === 200) {
       dispatch({ type: authConstants.PASSWORD_RESET_SUCCESS });
-      // navigate("/reset-password")
-      // toast.success("vui lòng kiểm tra email để thay đổi mật khẩu")
+      navigate("/")
+      toast.success("vui lòng kiểm tra email để thay đổi mật khẩu")
     } else {
       dispatch({
         type: authConstants.PASSWORD_RESET_FAILURE,
         payload: { error: res.data.error }
       });
-      // toast.error("email không hợp lệ")
+      toast.error("email không hợp lệ")
     }
   };
 }
 
-export const changePassword = (navigate, id) => {
+export const changePassword = (navigate, id ,password) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.CHANGE_PASSWORD_REQUEST });
-    const res = await axios.post(`/change-pasword/${id}`);
+    console.log("-------------1------------");
+    const res = await axios.post(`/change-password/${id}`,{password});
+    console.log("-------------1.5------------");
     if (res.status === 200) {
       dispatch({ type: authConstants.CHANGE_PASSWORD_SUCCESS });
       navigate("/login")
       toast.success("đã thay đổi mật khẩu thành công")
+      console.log("-------------2------------");
     } else {
       dispatch({
         type: authConstants.CHANGE_PASSWORD_FAILURE,
         payload: { error: res.data.error }
       });
       toast.error("đổi mật khẩu không thành công")
+      console.log("-------------3------------");
     }
+    console.log("-------------4------------");
   };
 }

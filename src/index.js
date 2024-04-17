@@ -19,6 +19,7 @@ import isLogin from './helpers/isLogin';
 import { Navigate } from "react-router-dom";
 import { ResetPassword } from './Pages/ResetPassword';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,8 +37,10 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> }
     ]
   },
-  { path: "reset-password", element: <ResetPassword /> }
-])
+  { path: "reset-password/:userId", element: <ResetPassword /> }
+],{
+  // basename: "/client-tvdt2"
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
