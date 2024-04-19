@@ -3,8 +3,6 @@ import { postConstants } from "../actions/constants"
 const initState = {
     loading: false,
     post: [],
-    approvePost: [],
-    pendingApprovePost: [],
     postForUser: [],
     error: null
 }
@@ -49,46 +47,6 @@ export default (state = initState, action) => {
                 loading: false,
             }
             break;
-
-        case postConstants.GET_PENDING_APPROVE_POST_REQUEST:
-            state = {
-                ...state,
-                loading: true,
-            }
-            break;
-        case postConstants.GET_PENDING_APPROVE_POST_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-                pendingApprovePost: action.payload
-            }
-            break;
-        case postConstants.GET_PENDING_APPROVE_POST_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-            }
-            break;
-        case postConstants.GET_APPROVE_POST_REQUEST:
-            state = {
-                ...state,
-                loading: true,
-            }
-            break;
-        case postConstants.GET_APPROVE_POST_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-                approvePost: action.payload
-            }
-            break;
-        case postConstants.GET_APPROVE_POST_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-            }
-            break;
-
         case postConstants.ADD_POST_REQUEST:
             state = {
                 ...state,
@@ -148,27 +106,6 @@ export default (state = initState, action) => {
                 error: action.payload.error
             }
             break;
-        case postConstants.UPDATE_APPROVE_POST_REQUEST:
-            state = {
-                ...state,
-                loading: true,
-            }
-            break;
-        case postConstants.UPDATE_APPROVE_POST_SUCCESS:
-            state = {
-                ...state,
-                loading: false,
-                approvePost: action.payload
-            }
-            break;
-        case postConstants.UPDATE_APPROVE_POST_FAILURE:
-            state = {
-                ...state,
-                loading: false,
-                error: action.payload.error
-            }
-            break;
-
         case postConstants.DOAWNLOAD_POST_REQUEST:
             state = {
                 ...state,

@@ -1,6 +1,7 @@
 import { postConstants } from "./constants";
 import axios from "../helpers/axios"
 import { toast } from "react-toastify";
+import fileDownload from 'js-file-download';
 
 export const getAllPost = () => {
     return async dispatch => {
@@ -14,41 +15,6 @@ export const getAllPost = () => {
         } else {
             dispatch({
                 type: postConstants.GET_ALL_POST_FAILURE
-            })
-        }
-    }
-}
-
-export const getApprovePost = () => {
-    return async dispatch => {
-        dispatch({ type: postConstants.GET_APPROVE_POST_REQUEST })
-        const res = await axios.get(`/post/getApprovedPost`)
-        if (res.status === 200) {
-            dispatch({
-                type: postConstants.GET_APPROVE_POST_SUCCESS,
-                payload: res.data
-            })
-
-        } else {
-            dispatch({
-                type: postConstants.GET_APPROVE_POST_FAILURE
-            })
-        }
-    }
-}
-
-export const getPendingApprovePost = () => {
-    return async dispatch => {
-        dispatch({ type: postConstants.GET_PENDING_APPROVE_POST_REQUEST })
-        const res = await axios.get(`/post/getPendingApprovedPost`)
-        if (res.status === 200) {
-            dispatch({
-                type: postConstants.GET_PENDING_APPROVE_POST_SUCCESS,
-                payload: res.data
-            })
-        } else {
-            dispatch({
-                type: postConstants.GET_PENDING_APPROVE_POST_FAILURE
             })
         }
     }
@@ -184,19 +150,23 @@ export const updateApprovePostById = (articleId) => {
 export const downloadFile = (filename) => {
     return async (dispatch) => {
         try {
-            const res = await axios.post(`/download/file`,{filename});
+            const res = await axios.get(`/download/file/${filename}`, {
+                responseType:"blob"
+            });
+
             dispatch({ type: postConstants.DOAWNLOAD_POST_REQUEST });
             if (res.status === 200) {
                 dispatch({
-                    type: postConstants.DOAWNLOAD_POST_SUCCESS, 
+                    type: postConstants.DOAWNLOAD_POST_SUCCESS,
                 })
+                fileDownload(res.data, filename)
             }
         } catch (error) {
             dispatch({
                 type: postConstants.DOAWNLOAD_POST_FAILURE
             })
         }
-     
+
     }
 }
 

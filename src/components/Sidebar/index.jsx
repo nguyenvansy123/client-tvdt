@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllCategory } from '../../actions/category.action';
 
-export const Sidebar= () => {
+export const Sidebar = () => {
     const dispatch = useDispatch();
     const category = useSelector(state => state.category)
 
@@ -22,7 +22,9 @@ export const Sidebar= () => {
     const renderListMenu = () => {
         return category?.categories.map((_category) => {
             // return <li key={_category._id}><Link to={`danh-muc/${_category.slug}`}>{_category.name}</Link></li>
-            return <li key={_category._id}><Link to='/'>{_category.name}</Link></li>
+            return (<li key={_category._id}>
+                        <Link to={`phan-loai/${_category.slug}`}> {_category.name} </Link>
+                    </li>)
         })
     }
 
@@ -31,7 +33,7 @@ export const Sidebar= () => {
             <h3 className="sidebar-widget__title fs-4">Phân loại tài liệu</h3>
             <div className="sidebar-widget__body" id="sidebar-menu">
                 <ul>
-                    <li><Link href="/">Tất cả </Link></li>
+                    <li><Link to="phan-loai/all">Tất cả</Link></li>
 
                     {renderListMenu()}
                 </ul>

@@ -3,8 +3,18 @@ import "./style.css"
 import { IoHomeOutline } from 'react-icons/io5'
 import { FaDownload, FaPaperclip } from 'react-icons/fa'
 import { GrDownloadOption } from "react-icons/gr";
+import { useDispatch } from 'react-redux';
+import fileDownload from 'js-file-download';
+import { downloadFile } from '../../actions/article.action';
 
 export const DetailPost = () => {
+    const dispatch = useDispatch();
+
+    const download = ()=>{
+        // B8S9AUvXS-2666-KH-SYT.pdf
+        dispatch(downloadFile("B8S9AUvXS-2666-KH-SYT.pdf"))
+    }
+
     return (
         <section id="main-content">
             <section className="book-detail">
@@ -52,8 +62,10 @@ export const DetailPost = () => {
                                 <span className="info-content">
                                     <a
                                         className="btn-bvdk btn-sm btn-rounded"
-                                        href="#"
+                                        // href="#"
                                         target="_blank"
+                                        onClick={download}
+                                        download
                                     >
                                      <GrDownloadOption /> Tải xuống
                                     </a>
