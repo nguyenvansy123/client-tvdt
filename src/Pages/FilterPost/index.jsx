@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { FaEye } from 'react-icons/fa'
 import { IoMdDownload } from 'react-icons/io'
 import { IoHomeOutline } from 'react-icons/io5'
@@ -10,16 +10,30 @@ export const FilterPost = () => {
     const params = useParams()
     const dispatch = useDispatch()
     const category = useSelector(state => state.category)
+    const article = useSelector(state => state.article)
+
+    
     // useEffect({
 
     // }, [])
-    console.log(category.categories);
+    // console.log(article);
 
-    // const renderTitle = () => {
-    //     const {slug} = params;
-    //     category.categories
-    //     return 
-    // }
+    const renderTitle = () => {
+        const { slug } = params;
+        const _category = category.categories.find(cat => cat.slug === slug);
+        if (!_category)
+        {
+            // dispatch()
+            return (<h2>Tất cả tài liệu</h2>)
+        }
+
+        return (<h2 >{_category.name}</h2>)
+
+    }
+
+    const renDataList = ()=>{
+        // re
+     }
 
     return (
         <section id="main-content">
@@ -32,12 +46,12 @@ export const FilterPost = () => {
                                     <IoHomeOutline />
                                 </a>
                             </li>
-                            <li className="breadcrumb-item"><a href="#">Ngoại khoa</a></li>
+                            <li className="breadcrumb-item"><a href="#" >Ngoại khoa</a></li>
                             <li className="breadcrumb-item"><a href="#">Gây mê hồi sức</a></li>
                         </ol>
                     </div>
                     <div className="books-wrap__title">
-                        <h2>Tất cả tài liệu</h2>
+                        {renderTitle()}
                     </div>
 
                     <ListItem />

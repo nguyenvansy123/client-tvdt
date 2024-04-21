@@ -8,7 +8,7 @@ export const ListItem = ({data}) => {
         <div className="books-wrap__body row d-flex">
             <div className="books-wrap__item col-6 col-md-4 col-lg-3">
                 <figure className="books-wrap__item-cover">
-                    <a href="post/1">
+                    <a href="/  post/1">
                         <img
                             src="https://elib.bvdktuthainguyen.gov.vn/uploads//bookCover/suy-ho-hap-so-sinh_1695697907.png"
                             alt="SUY HÔ HẤP SƠ SINH"

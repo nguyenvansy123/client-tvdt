@@ -20,6 +20,23 @@ export const getAllPost = () => {
     }
 }
 
+export const getPostBySlug = () => {
+    return async dispatch => {
+        dispatch({ type: postConstants.GET_ALL_POST_REQUEST })
+        const res = await axios.get(`/post/getAllPost`)
+        if (res.status === 200) {
+            dispatch({
+                type: postConstants.GET_ALL_POST_SUCCESS,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: postConstants.GET_ALL_POST_FAILURE
+            })
+        }
+    }
+}
+
 export const getPostsByUser = () => {
     return async dispatch => {
         dispatch({ type: postConstants.GET_POST_BY_USER_REQUEST })
