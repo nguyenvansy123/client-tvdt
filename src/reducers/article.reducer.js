@@ -4,6 +4,7 @@ const initState = {
     loading: false,
     post: [],
     postForUser: [],
+    postDetail:{},
     error: null
 }
 
@@ -19,7 +20,7 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 loading: false,
-                post: action.payload.post
+                post: action.payload.items
             }
             break;
         case postConstants.GET_ALL_POST_FAILURE:
@@ -47,6 +48,27 @@ export default (state = initState, action) => {
                 loading: false,
             }
             break;
+
+        case postConstants.GET_POST_BY_ID_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            }
+            break;
+        case postConstants.GET_POST_BY_ID_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                postDetail: action.payload
+            }
+            break;
+        case postConstants.GET_POST_BY_ID_FAILURE:
+            state = {
+                ...state,
+                loading: false,
+            }
+            break;
+
         case postConstants.ADD_POST_REQUEST:
             state = {
                 ...state,

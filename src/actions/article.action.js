@@ -3,10 +3,10 @@ import axios from "../helpers/axios"
 import { toast } from "react-toastify";
 import fileDownload from 'js-file-download';
 
-export const getAllPost = () => {
+export const getAllPost = ({ currentPage = 1, limit = 10 }) => {
     return async dispatch => {
         dispatch({ type: postConstants.GET_ALL_POST_REQUEST })
-        const res = await axios.get(`/post/getAllPost`)
+        const res = await axios.get(`/post/getApprovedPost?page=${currentPage}&limit=${limit}`)
         if (res.status === 200) {
             dispatch({
                 type: postConstants.GET_ALL_POST_SUCCESS,
@@ -20,20 +20,20 @@ export const getAllPost = () => {
     }
 }
 
-export const getPostBySlug = () => {
+export const getPostBySlug = (query,slug) => {
     return async dispatch => {
-        dispatch({ type: postConstants.GET_ALL_POST_REQUEST })
-        const res = await axios.get(`/post/getAllPost`)
-        if (res.status === 200) {
-            dispatch({
-                type: postConstants.GET_ALL_POST_SUCCESS,
-                payload: res.data
-            })
-        } else {
-            dispatch({
-                type: postConstants.GET_ALL_POST_FAILURE
-            })
-        }
+        // dispatch({ type: postConstants. GET_POST_BY_SLUG_REQUEST })
+        // const res = await axios.get(`/post/getAllPost/${slug}?page=${query.currentPage}&limit=${query.limit}`)
+        // if (res.status === 200) {
+        //     dispatch({
+        //         type: postConstants. GET_POST_BY_SLUG_SUCCESS,
+        //         payload: res.data
+        //     })
+        // } else {
+        //     dispatch({
+        //         type: postConstants. GET_POST_BY_SLUG_FAILURE
+        //     })
+        // }
     }
 }
 
@@ -46,11 +46,29 @@ export const getPostsByUser = () => {
         if (res.status === 200) {
             dispatch({
                 type: postConstants.GET_POST_BY_USER_SUCCESS,
-                payload: res.data
+                payload: res.data.items
             })
         } else {
             dispatch({
                 type: postConstants.GET_POST_BY_USER_FAILURE
+            })
+        }
+    }
+}
+
+export const getPostsById = (id) => {
+    return async dispatch => {
+        dispatch({ type: postConstants.GET_POST_BY_ID_REQUEST })
+        
+        const res = await axios.get(`/post/getPostById/${id}`)
+        if (res.status === 200) {
+            dispatch({
+                type: postConstants.GET_POST_BY_ID_SUCCESS,
+                payload: res.data[0]
+            })
+        } else {
+            dispatch({
+                type: postConstants.GET_POST_BY_ID_FAILURE
             })
         }
     }
@@ -136,39 +154,13 @@ export const updateStatusPostById = (articleId, newStatus, updateData) => {
     };
 }
 
-export const updateApprovePostById = (articleId) => {
-    return async (dispatch) => {
-        try {
-            const res = await axios.put(`/post/updateApprovrePost/${articleId}`);
-            dispatch({ type: postConstants.UPDATE_APPROVE_POST_REQUEST });
-            if (res.status === 201) {
-                dispatch({
-                    type: postConstants.UPDATE_APPROVE_POST_SUCCESS,
-                    payload: res.data
-                });
-                // updateData(true)
-                toast.success("phê duyệt thành công")
-                console.log(res.status)
-            } else {
-                const { error } = res.data;
-                dispatch({
-                    type: postConstants.UPDATE_APPROVE_POST_FAILURE,
-                    payload: {
-                        error
-                    },
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-}
+
 
 export const downloadFile = (filename) => {
     return async (dispatch) => {
         try {
             const res = await axios.get(`/download/file/${filename}`, {
-                responseType:"blob"
+                responseType: "blob"
             });
 
             dispatch({ type: postConstants.DOAWNLOAD_POST_REQUEST });

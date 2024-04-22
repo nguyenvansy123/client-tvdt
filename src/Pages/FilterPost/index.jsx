@@ -1,39 +1,42 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaEye } from 'react-icons/fa'
 import { IoMdDownload } from 'react-icons/io'
 import { IoHomeOutline } from 'react-icons/io5'
 import { ListItem } from '../../components/ListItems'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { getAllCategory, getAllPost, getPostBySlug } from '../../actions'
+import { Loader } from '../../components/HOC/Loader'
 
 export const FilterPost = () => {
-    const params = useParams()
+    const { slug } = useParams();
     const dispatch = useDispatch()
     const category = useSelector(state => state.category)
-    const article = useSelector(state => state.article)
+    const articles = useSelector(state => state.article.post)
+    const loading = useSelector(state => state.article.loading)
 
-    
-    // useEffect({
+    const [title, setTitle] = useState()
 
-    // }, [])
-    // console.log(article);
-
-    const renderTitle = () => {
-        const { slug } = params;
-        const _category = category.categories.find(cat => cat.slug === slug);
-        if (!_category)
-        {
-            // dispatch()
-            return (<h2>Tất cả tài liệu</h2>)
-        }
-
-        return (<h2 >{_category.name}</h2>)
-
+    const query = {
+        currentPage: 1,
+        limit: 10
     }
 
-    const renDataList = ()=>{
-        // re
-     }
+    useEffect(() => {
+        dispatch(getAllCategory());
+        dispatch(getAllPost(query));
+    }, [slug]);
+
+    useEffect(() => {
+        if (category.categories.length > 0) {
+            const selectedCategory = category.categories.find(cat => cat.slug === slug);
+            setTitle(selectedCategory ? selectedCategory.name : 'Tất cả tài liệu');
+            // selectedCategory ? dispatch(getPostBySlug(query)) : dispatch(getAllPost(query));
+        }
+    }, [slug, category.categories]);
+
+    const renDataList = () => {
+    }
 
     return (
         <section id="main-content">
@@ -42,19 +45,24 @@ export const FilterPost = () => {
                     <div className="col-12">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">
-                                <a href="https://elib.bvdktuthainguyen.gov.vn">
+                                <Link to="/">
                                     <IoHomeOutline />
-                                </a>
+                                </Link>
                             </li>
-                            <li className="breadcrumb-item"><a href="#" >Ngoại khoa</a></li>
-                            <li className="breadcrumb-item"><a href="#">Gây mê hồi sức</a></li>
+                            <li className="breadcrumb-item"><a href="#" >{title}</a></li>
                         </ol>
                     </div>
                     <div className="books-wrap__title">
-                        {renderTitle()}
-                    </div>
+                        <Loader isLoading={category.loading} >
+                            <h2>{title}</h2>
+                        </Loader>
 
-                    <ListItem />
+                    </div>
+                    <Loader isLoading={loading} >
+                        <ListItem data={articles} slug={slug} />
+                    </Loader>
+
+                    {/* <ListItem /> */}
                 </div>
             </section>
         </section>
