@@ -39,10 +39,10 @@ export const ArticleManagement = () => {
 
     useEffect(() => {
         // if (!hasFetchedData) {
-            const userString = localStorage.getItem('user');
-            const userObject = JSON.parse(userString);
-            dispatch(getPostsByUser(userObject?._id));
-            setHasFetchedData(true); 
+        const userString = localStorage.getItem('user');
+        const userObject = JSON.parse(userString);
+        dispatch(getPostsByUser(userObject?._id));
+        setHasFetchedData(true);
         // }
     }, [dispatch]);
 
@@ -60,10 +60,10 @@ export const ArticleManagement = () => {
             dispatch(getAllPost())
     }
 
-    const modifiedPost = article?.postForUser?.posts?.map(_post => {
+    const modifiedPost = article?.postForUser?.map(_post => {
         const showbtn = <button className='btn btn-info border-black fs-5 text-white' onClick={() => showDetailPost(_post)}>Show</button>;
-        const editbtn = <button className='btn btn-warning border-black fs-5 text-white mx-2' onClick={()=>handleShow3(_post)}>Edit</button>;
-        const deletebtn = <button className='btn btn-danger border-black fs-5' onClick={()=>deletePost(_post._id)} >Delete</button>;
+        const editbtn = <button className='btn btn-warning border-black fs-5 text-white mx-2' onClick={() => handleShow3(_post)}>Edit</button>;
+        const deletebtn = <button className='btn btn-danger border-black fs-5' onClick={() => deletePost(_post._id)} >Delete</button>;
         const actionbtn = <div className="d-flex">{showbtn} {editbtn} {deletebtn}</div>;
         return {
             title: _post.title,
@@ -72,7 +72,7 @@ export const ArticleManagement = () => {
             actionbtn
         };
     }) || [];
-
+    console.log(article);
     return (
         <>
             <div className="table-wrapper">
@@ -85,7 +85,7 @@ export const ArticleManagement = () => {
                     </div>
                 </div>
                 {
-                    article.postForUser && article?.postForUser?.posts?.length > 0 ? (
+                    article.postForUser && article?.postForUser?.length > 0 ? (
                         <TableModal title={titleTable} data={modifiedPost} />
                     ) : (
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
@@ -97,7 +97,7 @@ export const ArticleManagement = () => {
 
             <ShowPost postdetail={postdetail} handleClose={handleClose2} show={show2} />
             <CreatePost addPost={addPost} updateData={updateData} handleClose={handleClose} show={show} />
-            <EditPost data={postEdit} addPost={addPost} updateData={updateData} handleClose={handleClose3} s    how={show3} />
+            <EditPost data={postEdit} addPost={addPost} updateData={updateData} handleClose={handleClose3} s how={show3} />
         </>
     )
 }

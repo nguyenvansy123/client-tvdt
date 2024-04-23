@@ -6,15 +6,6 @@ export const TableModal = ({ title, data }) => {
         <>
             <table className="table align-middle mb-0 bg-white">
                 <thead className="bg-light">
-                    {/* 
-                    <tr>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Position</th>
-                        <th>Actions</th>
-                    </tr>
-                     */}
                     <tr>
                         {Array.from({ length: title?.length }).map((_, index) => (
                             <th key={index} className='fs-3'>{title[index]}</th>
@@ -30,7 +21,7 @@ export const TableModal = ({ title, data }) => {
                                     (
                                         <td key={index} className='fs-4'>{data[i][Object.keys(data[i])[index]]}</td>
                                     )
-                                )   
+                                )
                             }
                         </tr>
                     ))}

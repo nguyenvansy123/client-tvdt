@@ -14,7 +14,7 @@ export const Header = () => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-  }, [auth.authenticate, dispatch]);
+  }, [auth.authenticate]);
 
 
   const renderUI = () => {
