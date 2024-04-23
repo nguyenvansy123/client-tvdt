@@ -16,16 +16,6 @@ export const Header = () => {
     }
   }, [auth.authenticate]);
 
-
-  const renderUI = () => {
-    if ( !auth.loading && auth.authenticate)
-      return (<li className="nav-item">
-        <NavLink className="nav-link" to="/article-management">Bài viết</NavLink>
-      </li>)
-
-    return null
-  }
-
   return (
     <>
       <header id='header'>
@@ -49,15 +39,15 @@ export const Header = () => {
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/">Trang chủ</NavLink>
                     </li>
-                   
+
                     {
-                      renderUI()
-                    } 
-                    
+                      auth.authenticate ? <li className="nav-item"><NavLink className="nav-link" to="/article-management">Bài viết</NavLink></li> : null
+                    }
+
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/about">Giới thiệu</NavLink>
                     </li>
-                    
+
                   </ul>
                 </Nav>
               </Navbar.Collapse>

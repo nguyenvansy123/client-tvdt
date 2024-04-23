@@ -75,7 +75,6 @@ export const DetailPost = () => {
 
                                     <Link to={`/phan-loai/${slug}`}> {title} </Link>
                                 </li>
-                                <li className="breadcrumb-item"><Link >{article.title}</Link></li>
                             </ol>
                         </div>
                         <div className="col-12 col-md-4">
