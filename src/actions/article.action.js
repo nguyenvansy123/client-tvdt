@@ -20,20 +20,20 @@ export const getAllPost = ({ currentPage = 1, limit = 10 }) => {
     }
 }
 
-export const getPostBySlug = (query,slug) => {
+export const getPostByCategory = (query,id) => {
     return async dispatch => {
-        // dispatch({ type: postConstants. GET_POST_BY_SLUG_REQUEST })
-        // const res = await axios.get(`/post/getAllPost/${slug}?page=${query.currentPage}&limit=${query.limit}`)
-        // if (res.status === 200) {
-        //     dispatch({
-        //         type: postConstants. GET_POST_BY_SLUG_SUCCESS,
-        //         payload: res.data
-        //     })
-        // } else {
-        //     dispatch({
-        //         type: postConstants. GET_POST_BY_SLUG_FAILURE
-        //     })
-        // }
+        dispatch({ type: postConstants. GET_POST_BY_CATEGORY_REQUEST })
+        const res = await axios.get(`/post/getPostByCategory/${id}?page=${query.currentPage}&limit=${query.limit}`)
+        if (res.status === 200) {
+            dispatch({
+                type: postConstants. GET_POST_BY_CATEGORY_SUCCESS,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: postConstants. GET_POST_BY_CATEGORY_FAILURE
+            })
+        }
     }
 }
 

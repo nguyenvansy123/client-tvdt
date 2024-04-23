@@ -5,7 +5,7 @@ import { IoHomeOutline } from 'react-icons/io5'
 import { ListItem } from '../../components/ListItems'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCategory, getAllPost, getPostBySlug } from '../../actions'
+import { getAllCategory, getAllPost, getPostByCategory } from '../../actions'
 import { Loader } from '../../components/HOC/Loader'
 
 export const FilterPost = () => {
@@ -16,26 +16,26 @@ export const FilterPost = () => {
     const loading = useSelector(state => state.article.loading)
 
     const [title, setTitle] = useState()
-
+    const [catId, setCatId] = useState(null)
     const query = {
         currentPage: 1,
         limit: 10
     }
 
     useEffect(() => {
-        dispatch(getAllCategory());
-        dispatch(getAllPost(query));
-    }, [slug]);
-
-    useEffect(() => {
         if (category.categories.length > 0) {
             const selectedCategory = category.categories.find(cat => cat.slug === slug);
             setTitle(selectedCategory ? selectedCategory.name : 'Tất cả tài liệu');
-            // selectedCategory ? dispatch(getPostBySlug(query)) : dispatch(getAllPost(query));
+            setCatId(selectedCategory ? selectedCategory._id : null)
+            renderData(selectedCategory?._id)
         }
     }, [slug, category.categories]);
 
-    const renDataList = () => {
+    const renderData = (catId) => {
+        if (catId)
+            dispatch(getPostByCategory(query, catId))
+        else
+            dispatch(getAllPost(query))
     }
 
     return (
@@ -59,12 +59,14 @@ export const FilterPost = () => {
 
                     </div>
                     <Loader isLoading={loading} >
-                        <ListItem data={articles} slug={slug} />
+                        {
+                            articles.length > 0 && <ListItem data={articles} slug={slug} />
+                        }
                     </Loader>
 
                     {/* <ListItem /> */}
                 </div>
             </section>
-        </section>
+        </section >
     )
 }

@@ -46,7 +46,7 @@ export const DetailPost = () => {
         }
     }
 
-    const formatDay = (originalDateString)=>{
+    const formatDay = (originalDateString) => {
         const date = new Date(originalDateString);
         const day = date.getDate();
         const month = date.getMonth() + 1;
@@ -99,7 +99,7 @@ export const DetailPost = () => {
                                 </div>
                                 <div className="book-info__item">
                                     <span className="info-title">Ngày xuất bản</span>
-                                    <span className="info-content">{ formatDay(article.createdAt)}</span>
+                                    <span className="info-content">{formatDay(article.createdAt)}</span>
                                 </div>
                                 <div className="book-info__item">
                                     <span className="info-title">Số trang:</span>
@@ -112,7 +112,7 @@ export const DetailPost = () => {
                                             className="btn-bvdk btn-sm btn-rounded"
                                             // href="#"
                                             target="_blank"
-                                            onClick={()=>download(article.linkDownload)}
+                                            onClick={() => download(article.linkDownload)}
                                             download
                                         >
                                             <GrDownloadOption /> Tải xuống
@@ -137,7 +137,7 @@ export const DetailPost = () => {
                         </div>
                     </div>
                     <div className="book-content" style={{ height: "1071.1px" }}>
-                        <object data={generatePublicUrlFile(article.linkDownload)} type="application/pdf" width="100%" height="100%"></object>
+                        <object data={generatePublicUrlFile(article.linkDownload)} type="application/pdf" width="100%" height="100%" title={id}></object>
                     </div>
                 </section>
             </Loader>
