@@ -4,13 +4,18 @@ const initState = {
     loading: false,
     post: [],
     postForUser: [],
+    postNew: [],
+    postTopDownload: [],
     postDetail: {},
+
     error: null
 }
 
 export default (state = initState, action) => {
     switch (action.type) {
         case postConstants.GET_ALL_POST_REQUEST:
+        case postConstants.GET_NEW_POST_REQUEST:
+        case postConstants.GET_POST_TOP_DOWNLOAD_REQUEST:
         case postConstants.GET_POST_BY_USER_REQUEST:
         case postConstants.GET_POST_BY_CATEGORY_REQUEST:
         case postConstants.GET_POST_BY_ID_REQUEST:
@@ -52,14 +57,31 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 loading: false,
+                postNew: action.payload.items
             };
             break;
+        case postConstants.GET_NEW_POST_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                postTopDownload: action.payload.items
+            };
+            break;
+        case postConstants.GET_POST_TOP_DOWNLOAD_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+            };
+            break;
+
         case postConstants.GET_ALL_POST_FAILURE:
         case postConstants.GET_POST_BY_USER_FAILURE:
         case postConstants.GET_POST_BY_CATEGORY_FAILURE:
         case postConstants.GET_POST_BY_ID_FAILURE:
         case postConstants.ADD_POST_FAILURE:
         case postConstants.DELETE_POST_BY_ID_FAILURE:
+        case postConstants.GET_NEW_POST_FAILURE:
+        case postConstants.GET_POST_TOP_DOWNLOAD_FAILURE:
         // case postConstants.UPDATE_STATUS_POST_BY_ID_FAILURE:
         case postConstants.DOAWNLOAD_POST_FAILURE:
             state = {
@@ -68,6 +90,7 @@ export default (state = initState, action) => {
                 error: action.payload.error,
             };
             break;
+
         default:
             break;
     }
