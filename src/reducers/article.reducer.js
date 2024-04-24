@@ -57,20 +57,20 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 loading: false,
-                postNew: action.payload.items
             };
             break;
         case postConstants.GET_NEW_POST_SUCCESS:
             state = {
                 ...state,
                 loading: false,
-                postTopDownload: action.payload.items
+                postNew: action.payload
             };
             break;
         case postConstants.GET_POST_TOP_DOWNLOAD_SUCCESS:
             state = {
                 ...state,
                 loading: false,
+                postTopDownload: action.payload
             };
             break;
 

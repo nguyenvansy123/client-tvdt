@@ -31,6 +31,7 @@ export const FilterPost = () => {
         }
     }, [slug, category.categories]);
 
+
     const renderData = (catId) => {
         if (catId)
             dispatch(getPostByCategory(query, catId))

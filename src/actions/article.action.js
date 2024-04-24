@@ -20,11 +20,12 @@ export const getAllPost = ({ currentPage = 1, limit = 10 }) => {
     }
 }
 
-export const getNewPost = ({ currentPage = 1, limit = 10 }) => {
+export const getNewPost = () => {
     return async dispatch => {
         dispatch({ type: postConstants.GET_NEW_POST_REQUEST })
-        const res = await axios.get(`/post/getApprovedPost?page=${currentPage}&limit=${limit}`)
+        const res = await axios.get(`/post/getNewPost`)
         if (res.status === 200) {
+            console.log(res.data);
             dispatch({
                 type: postConstants.GET_NEW_POST_SUCCESS,
                 payload: res.data
@@ -37,10 +38,10 @@ export const getNewPost = ({ currentPage = 1, limit = 10 }) => {
     }
 }
 
-export const getTopDownloadPost = ({ currentPage = 1, limit = 10 }) => {
+export const getTopDownloadPost = () => {
     return async dispatch => {
         dispatch({ type: postConstants.GET_POST_TOP_DOWNLOAD_REQUEST })
-        const res = await axios.get(`/post/getApprovedPost?page=${currentPage}&limit=${limit}`)
+        const res = await axios.get(`/post/getTopDownloadPost`)
         if (res.status === 200) {
             dispatch({
                 type: postConstants.GET_POST_TOP_DOWNLOAD_SUCCESS,

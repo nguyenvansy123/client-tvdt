@@ -163,8 +163,7 @@ export const createSessionId = () => {
     console.log(res.data);
     if (res.status === 200) {
       localStorage.setItem("sessionId", res.data);
-    }else
-    {
+    } else {
       console.log("sessionId không được tạo");
     }
 
