@@ -7,7 +7,7 @@ import { Sidebar } from '../Sidebar'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { isUserLoggedIn, signout } from '../../actions/auth.action'
+import { createSessionId, isUserLoggedIn, signout } from '../../actions/auth.action'
 
 export const Layout = () => {
     const auth = useSelector(state => state.auth);
@@ -15,21 +15,18 @@ export const Layout = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const sessionId = window.localStorage.getItem("sessionId")
+        if (!sessionId) {
+            dispatch(createSessionId())
+        }
+    }, [])
+
+    useEffect(() => {
         if (!auth.authenticate) {
             dispatch(isUserLoggedIn());
         }
     }, [auth.authenticate, dispatch]);
 
-    const renderLoggedInLinks = () => {
-        if (auth.user.role === 'quản trị viên') {
-            return (
-                <>
-                    <NavLink to="category" className="btn_3">Quản lý danh mục</NavLink>
-                    <NavLink to="user-management" className="btn_3">Quản lý user</NavLink>
-                </>
-            );
-        }
-    }
 
 
     return (
@@ -92,7 +89,7 @@ export const Layout = () => {
                 rtl={false}
                 // pauseOnFocusLoss
                 draggable
-                // pauseOnHover
+            // pauseOnHover
             />
         </>
     )

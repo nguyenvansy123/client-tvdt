@@ -55,8 +55,8 @@ export const DetailPost = () => {
         return formattedDate
     }
 
-    const download = (filename) => {
-        dispatch(downloadFile(filename))
+    const download = (filename, id) => {
+        dispatch(downloadFile(filename, id))
     }
 
     return (
@@ -111,7 +111,7 @@ export const DetailPost = () => {
                                             className="btn-bvdk btn-sm btn-rounded"
                                             // href="#"
                                             target="_blank"
-                                            onClick={() => download(article.linkDownload)}
+                                            onClick={() => download(article.linkDownload, article._id)}
                                             download
                                         >
                                             <GrDownloadOption /> Tải xuống

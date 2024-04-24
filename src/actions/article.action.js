@@ -20,18 +20,52 @@ export const getAllPost = ({ currentPage = 1, limit = 10 }) => {
     }
 }
 
-export const getPostByCategory = (query,id) => {
+export const getNewPost = ({ currentPage = 1, limit = 10 }) => {
     return async dispatch => {
-        dispatch({ type: postConstants. GET_POST_BY_CATEGORY_REQUEST })
-        const res = await axios.get(`/post/getPostByCategory/${id}?page=${query.currentPage}&limit=${query.limit}`)
+        dispatch({ type: postConstants.GET_NEW_POST_REQUEST })
+        const res = await axios.get(`/post/getApprovedPost?page=${currentPage}&limit=${limit}`)
         if (res.status === 200) {
             dispatch({
-                type: postConstants. GET_POST_BY_CATEGORY_SUCCESS,
+                type: postConstants.GET_NEW_POST_SUCCESS,
                 payload: res.data
             })
         } else {
             dispatch({
-                type: postConstants. GET_POST_BY_CATEGORY_FAILURE
+                type: postConstants.GET_NEW_POST_FAILURE
+            })
+        }
+    }
+}
+
+export const getTopDownloadPost = ({ currentPage = 1, limit = 10 }) => {
+    return async dispatch => {
+        dispatch({ type: postConstants.GET_POST_TOP_DOWNLOAD_REQUEST })
+        const res = await axios.get(`/post/getApprovedPost?page=${currentPage}&limit=${limit}`)
+        if (res.status === 200) {
+            dispatch({
+                type: postConstants.GET_POST_TOP_DOWNLOAD_SUCCESS,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: postConstants.GET_POST_TOP_DOWNLOAD_FAILURE
+            })
+        }
+    }
+}
+
+export const getPostByCategory = (query, id) => {
+    return async dispatch => {
+        dispatch({ type: postConstants.GET_POST_BY_CATEGORY_REQUEST })
+        const res = await axios.get(`/post/getPostByCategory/${id}?page=${query.currentPage}&limit=${query.limit}`)
+        if (res.status === 200) {
+            dispatch({
+                type: postConstants.GET_POST_BY_CATEGORY_SUCCESS,
+                payload: res.data
+            })
+        } else {
+            dispatch({
+                type: postConstants.GET_POST_BY_CATEGORY_FAILURE
             })
         }
     }
@@ -59,12 +93,13 @@ export const getPostsByUser = () => {
 export const getPostsById = (id) => {
     return async dispatch => {
         dispatch({ type: postConstants.GET_POST_BY_ID_REQUEST })
-        
-        const res = await axios.get(`/post/getPostById/${id}`)
+        const session = localStorage.getItem("sessionId")
+        console.log(session, "63-actionjs");
+        const res = await axios.get(`/post/getPostById/${id}?session=${session}`)
         if (res.status === 200) {
             dispatch({
                 type: postConstants.GET_POST_BY_ID_SUCCESS,
-                payload: res.data[0]
+                payload: res.data
             })
         } else {
             dispatch({
@@ -156,10 +191,11 @@ export const updateStatusPostById = (articleId, newStatus, updateData) => {
 
 
 
-export const downloadFile = (filename) => {
+export const downloadFile = (filename, id) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/download/file/${filename}`, {
+            const session = localStorage.getItem("sessionId")
+            const res = await axios.get(`/download/file/${id}/${filename}?session=${session}`, {
                 responseType: "blob"
             });
 
