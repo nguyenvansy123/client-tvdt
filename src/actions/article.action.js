@@ -110,7 +110,7 @@ export const getPostsById = (id) => {
     }
 }
 
-export const addPost = (form) => {
+export const addPost = (form,updateNewData) => {
     console.log(form)
     return async dispatch => {
         dispatch({ type: postConstants.ADD_POST_REQUEST })
@@ -125,6 +125,7 @@ export const addPost = (form) => {
             dispatch({
                 type: postConstants.ADD_POST_SUCCESS
             })
+            updateNewData()
         } else {
             console.log(res.error);
             dispatch({
@@ -135,7 +136,7 @@ export const addPost = (form) => {
     }
 }
 
-export const deletePostById = (id) => {
+export const deletePostById = (id,updateData) => {
     return async (dispatch) => {
         try {
             const res = await axios.delete(`/post/deletePostId/${id}`);
@@ -146,7 +147,7 @@ export const deletePostById = (id) => {
                     payload: res.data
                 });
                 toast.success("xóa thành công")
-
+                updateData()
             } else {
                 const { error } = res.data;
                 dispatch({
@@ -172,7 +173,7 @@ export const updateStatusPostById = (articleId, newStatus, updateData) => {
                     type: postConstants.UPDATE_STATUS_POST_BY_ID_SUCCESS,
                     payload: res.data
                 });
-                // updateData(true)
+                updateData()
                 toast.success("phê duyệt thành công")
                 console.log(res.status)
             } else {

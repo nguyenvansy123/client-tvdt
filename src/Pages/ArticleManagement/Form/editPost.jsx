@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap';
 import { generatePublicUrlFile, generatePublicUrlImages } from '../../../urlConfig';
 
 export const EditPost = ({ ...props }) => {
-    const { data, addPost, updateData, handleClose, show } = props
+    const { data, updatePost, updateData, handleClose, show } = props
     const dispatch = useDispatch();
     const category = useSelector(state => state.category)
 
@@ -21,12 +21,12 @@ export const EditPost = ({ ...props }) => {
     // Sử dụng useState để tạo trạng thái cho checkbox
     const [isChecked, setIsChecked] = useState(false);
 
-    useEffect(() => {
-        if (!hasFetchedData) {
-            dispatch(getAllCategory());
-            setHasFetchedData(true);
-        }
-    }, [dispatch, hasFetchedData]);
+    // useEffect(() => {
+    //     if (!hasFetchedData) {
+    //         dispatch(getAllCategory());
+    //         setHasFetchedData(true);
+    //     }
+    // }, [dispatch, hasFetchedData]);
 
     const handlePost = (e) => {
 
@@ -39,13 +39,13 @@ export const EditPost = ({ ...props }) => {
         formdata.append("categoryId", categoryId)
         formdata.append("linkPreview", linkPreview)
 
-        dispatch(addPost(formdata, updateNewData))
+        dispatch(updatePost(formdata, updateNewData))
 
         e.preventDefault();
     }
 
     const updateNewData = () => {
-        updateData(true)
+        updateData()
         handleCloseForm()
     }
 
@@ -68,20 +68,6 @@ export const EditPost = ({ ...props }) => {
         setFileDowload(e.target.files[0])
     }
 
-    // function convertToPreviewLink(originalLink) {
-    //     const fileId = extractFileId(originalLink);
-    //     if (fileId) {
-    //         return setLinkPreview(`https://drive.google.com/file/d/${fileId}/preview`);
-    //     }
-    //     return null;
-    // }
-
-    function extractFileId(link) {
-        const match = link.match(/\/file\/d\/([^\/]+)\//);
-        return match ? match[1] : null;
-    }
-
-
     return (
         <Modal show={show} onHide={handleCloseForm} className='w-full'>
             <Modal.Header closeButton>
@@ -92,8 +78,6 @@ export const EditPost = ({ ...props }) => {
                     data &&
                     <form method='post' encType='multipart/form-data'>
                         <div className="create-post post-editor">
-                            {/* <h1 className="post-title" >Create Post</h1> */}
-
                             <input
                                 type="text" className="editor-title-input" placeholder="Tiêu đề"
                                 value={data.title}
@@ -116,30 +100,30 @@ export const EditPost = ({ ...props }) => {
                             >
                                 <option value={0}>Chọn danh mục</option>
                                 {
-                                    category?.categories && category?.categories.map((_category) => {
+                                    category?.categories.length > 0 && category?.categories.map((_category) => {
 
                                         return <option value={_category._id} key={_category._id} >{_category.name}</option>
                                     })
                                 }
                             </select>
-            
-                            <div className="box-category">
+
+                            {/* <div className="box-category">
                                 <span className="box-category-link-with-title">Chọn ảnh tiêu đề </span>
                                 <input
                                     className="box-category-link-with-avatar" type="file" name="file" id=""
-                                    // value={generatePublicUrlImages(data.arliclePictures)}
+                                    value={generatePublicUrlImages(data.arliclePictures)}
                                     onChange={(e) => handleImage(e)}
                                 />
-                            </div>
+                            </div> */}
 
-                            <div className="box-category">
+                            {/* <div className="box-category">
                                 <span className="box-category-link-with-title">Chọn File</span>
                                 <input
                                     type="file" name='file' className="box-category-link-with-avatar"
-                                    // value={generatePublicUrlFile(data.linkDowload)}
+                                    value={generatePublicUrlFile(data.linkDowload)}
                                     onChange={(e) => handleFile(e)}
                                 />
-                            </div>
+                            </div> */}
 
 
                         </div>

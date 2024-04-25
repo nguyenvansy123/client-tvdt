@@ -55,7 +55,7 @@ export const CreatePost = ({ ...props }) => {
     }
 
     const updateNewData = () => {
-        updateData(true)
+        updateData()
         handleCloseForm()
     }
 
@@ -81,20 +81,6 @@ export const CreatePost = ({ ...props }) => {
         setFilePDF(URL.createObjectURL(e.target.files[0]))
         SetFileNamePDF(e.target.files[0].name)
     }
-
-    // function convertToPreviewLink(originalLink) {
-    //     const fileId = extractFileId(originalLink);
-    //     if (fileId) {
-    //         return setLinkPreview(`https://drive.google.com/file/d/${fileId}/preview`);
-    //     }
-    //     return null;
-    // }
-
-    // function extractFileId(link) {
-    //     const match = link.match(/\/file\/d\/([^\/]+)\//);
-    //     return match ? match[1] : null;
-    // }
-
 
     return (
         <Modal size="xl" show={show} centered onHide={handleCloseForm}>

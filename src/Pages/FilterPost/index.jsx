@@ -50,7 +50,7 @@ export const FilterPost = () => {
                                     <IoHomeOutline />
                                 </Link>
                             </li>
-                            <li className="breadcrumb-item"><a href="#" >{title}</a></li>
+                            <li className="breadcrumb-item"><a >{title}</a></li>
                         </ol>
                     </div>
                     <div className="books-wrap__title">

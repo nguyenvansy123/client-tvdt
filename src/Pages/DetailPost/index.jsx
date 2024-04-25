@@ -67,9 +67,9 @@ export const DetailPost = () => {
                         <div className="col-12">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <a href="https://elib.bvdktuthainguyen.gov.vn">
+                                    <Link to="/">
                                         <IoHomeOutline />
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="breadcrumb-item">
 

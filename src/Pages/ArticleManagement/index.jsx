@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../actions/category.action';
 import "./style.css"
-import { addPost, deletePostById, getAllPost, getPostsByUser } from '../../actions';
+import { addPost, deletePostById, getAllPost, getPostsByUser, updateStatusPostById } from '../../actions';
 import { TableModal } from '../../components/TableModal';
 import { CreatePost } from './Form/createPost';
 import { ShowPost } from './Form/showPost';
@@ -24,10 +24,6 @@ export const ArticleManagement = () => {
 
     const [show3, setShow3] = useState(false);
     const handleClose3 = () => setShow3(false);
-    const handleShow3 = (value) => {
-        setPostEdit(value)
-        return setShow3(true)
-    };
 
     const [hasFetchedData, setHasFetchedData] = useState(false);
     const [selectedOption, setSelectedOption] = useState(false);
@@ -51,14 +47,23 @@ export const ArticleManagement = () => {
         handleShow2()
     }
 
+    const handleShow3 = (value) => {
+        setPostEdit(value)
+        return setShow3(true)
+    };
+
     const deletePost = (_id) => {
         dispatch(deletePostById(_id, updateData))
     }
 
-    const updateData = (isUpdate) => {
-        if (isUpdate)
-            dispatch(getAllPost())
+    const updateData = () => {
+        const userString = localStorage.getItem('user');
+        const userObject = JSON.parse(userString);
+        dispatch(getPostsByUser(userObject?._id));
+        setHasFetchedData(true);
     }
+
+
 
     const modifiedPost = article?.postForUser?.map(_post => {
         const showbtn = <button className='btn btn-info border-black fs-5 text-white' onClick={() => showDetailPost(_post)}>Show</button>;
@@ -72,7 +77,7 @@ export const ArticleManagement = () => {
             actionbtn
         };
     }) || [];
-    console.log(article);
+
     return (
         <>
             <div className="table-wrapper">
@@ -97,7 +102,7 @@ export const ArticleManagement = () => {
 
             <ShowPost postdetail={postdetail} handleClose={handleClose2} show={show2} />
             <CreatePost addPost={addPost} updateData={updateData} handleClose={handleClose} show={show} />
-            <EditPost data={postEdit} addPost={addPost} updateData={updateData} handleClose={handleClose3} s how={show3} />
+            <EditPost data={postEdit} updatePost={updateStatusPostById} updateData={updateData} handleClose={handleClose3} show={show3} />
         </>
     )
 }
