@@ -97,7 +97,7 @@ export const DetailPost = () => {
                                     <span className="info-content">{article.publisher}</span>
                                 </div>
                                 <div className="book-info__item">
-                                    <span className="info-title">Ngày xuất bản</span>
+                                    <span className="info-title">Ngày đăng bài</span>
                                     <span className="info-content">{formatDay(article.createdAt)}</span>
                                 </div>
                                 <div className="book-info__item">

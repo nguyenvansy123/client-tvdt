@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../actions/category.action';
 import "./style.css"
-import { addPost, deletePostById, getAllPost, getPostsByUser, updateStatusPostById } from '../../actions';
+import { addPost, deletePostById, getAllPost, getPostsByUser, updatePostById, updateStatusPostById } from '../../actions';
 import { TableModal } from '../../components/TableModal';
 import { CreatePost } from './Form/createPost';
 import { ShowPost } from './Form/showPost';
@@ -102,7 +102,7 @@ export const ArticleManagement = () => {
 
             <ShowPost postdetail={postdetail} handleClose={handleClose2} show={show2} />
             <CreatePost addPost={addPost} updateData={updateData} handleClose={handleClose} show={show} />
-            <EditPost data={postEdit} updatePost={updateStatusPostById} updateData={updateData} handleClose={handleClose3} show={show3} />
+            <EditPost data={postEdit} updatePost={updatePostById} updateData={updateData} handleClose={handleClose3} show={show3} />
         </>
     )
 }

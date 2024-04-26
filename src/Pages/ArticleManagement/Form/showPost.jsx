@@ -1,9 +1,6 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import { FaPaperclip } from 'react-icons/fa'
-import { IoHomeOutline } from 'react-icons/io5'
 import { generatePublicUrlFile, generatePublicUrlImages } from '../../../urlConfig'
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 export const ShowPost = ({ ...props }) => {
 
@@ -14,13 +11,15 @@ export const ShowPost = ({ ...props }) => {
         return parts[parts?.length - 1];
     };
 
-    // console.log(getFileExtension(postdetail.linkDownload))
-    // const docs = [{
-    //     url: generatePublicUrlFile(postdetail.linkDownload),
-    //     fileType: getFileExtension(postdetail.linkDownload),
-    //     // fileName: "6 THANG CUOI - BAO CAO CSSK NGUOI CAO TUOI - SYT.docx",
-    // }]
-    // console.log(generatePublicUrlFile(postdetail.linkDownload))
+    const formatDay = (originalDateString) => {
+        const date = new Date(originalDateString);
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+        return formattedDate
+    }
+
     return (
         <Modal width="100%" size="lg" show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
             <Modal.Header closeButton>
@@ -30,21 +29,10 @@ export const ShowPost = ({ ...props }) => {
                 <section id="main-content">
                     <section className="book-detail">
                         <div className="row">
-                            <div className="col-12">
-                                {/* <ol className="breadcrumb">
-                            <li className="breadcrumb-item">
-                                <a href="https://elib.bvdktuthainguyen.gov.vn">
-                                    <IoHomeOutline />
-                                </a>
-                            </li>
-                            <li className="breadcrumb-item"><a href="#">Ngoại khoa</a></li>
-                            <li className="breadcrumb-item"><a href="#">Gây mê hồi sức</a></li>
-                        </ol> */}
-                            </div>
                             <div className="col-12 col-md-4">
                                 <figure className="book-cover">
                                     <img
-                                        src={generatePublicUrlImages(postdetail.arliclePictures) && generatePublicUrlImages(postdetail.arliclePictures)}
+                                        src={postdetail.arliclePictures && generatePublicUrlImages(postdetail.arliclePictures)}
                                         alt="Tài liệu về gây mê hồi sức"
                                     />
                                 </figure>
@@ -58,8 +46,8 @@ export const ShowPost = ({ ...props }) => {
                                     </div>
 
                                     <div className="book-info__item">
-                                        <span className="info-title">Ngày xuất bản</span>
-                                        <span className="info-content">{postdetail.updatedAt}</span>
+                                        <span className="info-title">Ngày đăng bài:</span>
+                                        <span className="info-content">{formatDay(postdetail.updatedAt)}</span>
                                     </div>
                                     <div className="book-info__item">
                                         <span className="info-title">Số trang:</span>
@@ -82,9 +70,7 @@ export const ShowPost = ({ ...props }) => {
                         </div>
                         <div className="book-content">
                             {/* <iframe src={postdetail.linkPreview} allow="autoplay" width="100%" height="480"></iframe> */}
-                            {/* <object data={generatePublicUrlFile(postdetail.linkDownload)} type="application/pdf" width="100%" height="480">
-                                <p>It appears you don't have a PDF plugin for this browser. No biggie... you can <a href={postdetail.linkPreview}>click here to download the PDF file.</a></p>
-                            </object> */}
+                            <object data={generatePublicUrlFile(postdetail.linkDownload)} type="application/pdf" width="100%" height="480"></object>
                             {/* <DocViewer
                                 documents={docs}
                                 pluginRenderers={DocViewerRenderers}

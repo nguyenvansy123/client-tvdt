@@ -21,6 +21,7 @@ export default (state = initState, action) => {
         case postConstants.GET_POST_BY_ID_REQUEST:
         case postConstants.ADD_POST_REQUEST:
         case postConstants.DELETE_POST_BY_ID_REQUEST:
+        case postConstants.UPDATE_POST_BY_ID_REQUEST:
         // case postConstants.UPDATE_STATUS_POST_BY_ID_REQUEST:
         case postConstants.DOAWNLOAD_POST_REQUEST:
             state = {
@@ -53,6 +54,7 @@ export default (state = initState, action) => {
         case postConstants.ADD_POST_SUCCESS:
         case postConstants.DELETE_POST_BY_ID_SUCCESS:
         // case postConstants.UPDATE_STATUS_POST_BY_ID_SUCCESS:
+        case postConstants.UPDATE_POST_BY_ID_SUCCESS:
         case postConstants.DOAWNLOAD_POST_SUCCESS:
             state = {
                 ...state,
@@ -84,6 +86,7 @@ export default (state = initState, action) => {
         case postConstants.GET_POST_TOP_DOWNLOAD_FAILURE:
         // case postConstants.UPDATE_STATUS_POST_BY_ID_FAILURE:
         case postConstants.DOAWNLOAD_POST_FAILURE:
+        case postConstants.UPDATE_POST_BY_ID_FAILURE:
             state = {
                 ...state,
                 loading: false,
