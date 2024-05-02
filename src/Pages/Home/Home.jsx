@@ -29,7 +29,7 @@ export const Home = () => {
           <a href="#" className="books-wrap__view-all fs-5">Xem tất cả</a>
         </div>
         {
-          newArticles && <ListItem data={newArticles} slug="new-articles" />
+          newArticles.length > 0 ? <ListItem data={newArticles} slug="new-articles" /> : <h2>chưa tài liệu được tải nên</h2>
         }
 
       </section>
@@ -39,7 +39,7 @@ export const Home = () => {
           <a href="#" className="books-wrap__view-all fs-5">Xem tất cả</a>
         </div>
         {
-          topDownloadArticles && <ListItem data={topDownloadArticles} slug="top-dowload-articles" />
+          topDownloadArticles.length > 0 ? <ListItem data={topDownloadArticles} slug="top-dowload-articles" /> : <h2>chưa có tài liệu nào được tải xuống</h2>
         }
       </section>
     </section>
