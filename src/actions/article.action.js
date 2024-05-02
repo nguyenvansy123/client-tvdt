@@ -164,35 +164,34 @@ export const deletePostById = (id, updateData) => {
 };
 
 export const updatePostById = (articleId, form, updateData) => {
-    console.log(form);
     return async (dispatch) => {
-        try {
-            const res = await axios.post(`/post/updatePostById/${articleId}`, form, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            });
-            dispatch({ type: postConstants.UPDATE_POST_BY_ID_REQUEST });
-            if (res.status === 201) {
-                dispatch({
-                    type: postConstants.UPDATE_POST_BY_ID_SUCCESS,
-                    payload: res.data
-                });
-                updateData()
-                toast.success("update thành công")
-                console.log(res.status)
-            } else {
-                const { error } = res.data;
-                dispatch({
-                    type: postConstants.UPDATE_POST_BY_ID_FAILURE,
-                    payload: {
-                        error
-                    },
-                });
+        // try {
+        const res = await axios.post(`/post/updatePostById/${articleId}`, form, {
+            headers: {
+                "Content-Type": "multipart/form-data"
             }
-        } catch (error) {
-            console.log(error);
+        });
+        dispatch({ type: postConstants.UPDATE_POST_BY_ID_REQUEST });
+        if (res.status === 201) {
+            dispatch({
+                type: postConstants.UPDATE_POST_BY_ID_SUCCESS,
+                payload: res.data
+            });
+            updateData()
+            toast.success("update thành công")
+            console.log(res.status)
+        } else {
+            const { error } = res.data;
+            dispatch({
+                type: postConstants.UPDATE_POST_BY_ID_FAILURE,
+                payload: {
+                    error
+                },
+            });
         }
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
 }
 
