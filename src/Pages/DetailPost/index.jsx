@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./style.css"
 import { IoHomeOutline } from 'react-icons/io5'
 import { FaDownload, FaPaperclip } from 'react-icons/fa'
 import { GrDownloadOption } from "react-icons/gr";
 import { useDispatch, useSelector } from 'react-redux';
-import fileDownload from 'js-file-download';
 import { downloadFile, getPostsById } from '../../actions/article.action';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Loader } from '../../components/HOC/Loader';
-import { useState } from 'react';
 import { getAllCategory } from '../../actions';
+import { IoHomeOutline } from 'react-icons/io5'
+import { FaDownload } from 'react-icons/fa'
 import { generatePublicUrlFile, generatePublicUrlImages } from '../../urlConfig';
 
 export const DetailPost = () => {
@@ -19,6 +18,7 @@ export const DetailPost = () => {
     const article = useSelector(state => state.article.postDetail)
     const loading = useSelector(state => state.article.loading)
     const category = useSelector(state => state.category.categories)
+    const auth = useSelector(state => state.auth);
 
     const [title, setTitle] = useState()
 
@@ -56,6 +56,9 @@ export const DetailPost = () => {
     }
 
     const download = (filename, id) => {
+        if (!auth.authenticate) {
+            return window.alert("Bạn phải đăng nhập mới tải được tài liệu này");
+        }
         dispatch(downloadFile(filename, id))
     }
 
@@ -136,7 +139,9 @@ export const DetailPost = () => {
                         </div>
                     </div>
                     <div className="book-content" style={{ height: "1071.1px" }}>
-                        <object data={generatePublicUrlFile(article.linkDownload)} type="application/pdf" width="100%" height="100%" title={id}></object>
+                        {
+                            auth.authenticate ? <object data={generatePublicUrlFile(article.linkDownload)} type="application/pdf" width="100%" height="1071.1px" title={id}></object> : <h2 className='mt-5 text-center'>vui lòng đăng nhập để có thể được xem tài liệu</h2>
+                        }
                     </div>
                 </section>
             </Loader>

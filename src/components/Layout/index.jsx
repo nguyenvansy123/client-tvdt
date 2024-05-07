@@ -45,8 +45,8 @@ export const Layout = () => {
                                             <div className="userLogin">
                                                 <h3 className="sidebar-widget__title fs-4">Tài khoản của tôi</h3>
                                                 <div className="sidebar-info border-solid user-info">
-                                                    <h5>{auth.user.email}</h5>
-                                                    <p>chức danh : {auth.user.role}</p>
+                                                    <p className="fs-5">Tên: {auth.user.username}</p>
+                                                    <p className="fs-5">Chức danh: {auth.user.role}</p>
                                                     <button className='btn btn-primary fs-3' onClick={() => dispatch(signout(navigate))}>đăng xuất</button>
                                                 </div>
                                             </div>

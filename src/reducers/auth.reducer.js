@@ -5,6 +5,7 @@ const initialState = {
     user: {
         email: "",
         picture: "",
+        username:""
     },
     authenticate: false,
     authenticating: false,
