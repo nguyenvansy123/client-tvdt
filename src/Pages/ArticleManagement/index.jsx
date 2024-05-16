@@ -13,10 +13,16 @@ export const ArticleManagement = () => {
     const dispatch = useDispatch();
 
     const article = useSelector(state => state.article)
+    const auth = useSelector(state => state.auth);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        if (auth.user.role !== "thành viên") {
+            return window.alert("Bạn phải là thành viên chính thức mới có thể đăng tài liệu vui lòng đợi admin phê duyệt tài khoản.");
+        }
+        setShow(true)
+    };
 
     const [show2, setShow2] = useState(false);
     const handleClose2 = () => setShow2(false);

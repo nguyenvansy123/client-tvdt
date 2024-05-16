@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import "./style.css"
 import { IoHomeOutline } from 'react-icons/io5'
-import { FaDownload, FaPaperclip } from 'react-icons/fa'
 import { GrDownloadOption } from "react-icons/gr";
 import { useDispatch, useSelector } from 'react-redux';
 import { downloadFile, getPostsById } from '../../actions/article.action';
 import { Link, useParams } from 'react-router-dom';
 import { Loader } from '../../components/HOC/Loader';
 import { getAllCategory } from '../../actions';
-import { IoHomeOutline } from 'react-icons/io5'
-import { FaDownload } from 'react-icons/fa'
 import { generatePublicUrlFile, generatePublicUrlImages } from '../../urlConfig';
 
 export const DetailPost = () => {
