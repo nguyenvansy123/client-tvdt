@@ -135,7 +135,7 @@ export const DetailPost = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="book-content" style={{ height: "1071.1px" }}>
+                    <div className="book-content mb-5" style={{ height: "auto" }}>
                         {
                             auth.authenticate ? <object data={generatePublicUrlFile(article.linkDownload)} type="application/pdf" width="100%" height="1071.1px" title={id}></object> : <h2 className='mt-5 text-center'>vui lòng đăng nhập để có thể được xem tài liệu</h2>
                         }
