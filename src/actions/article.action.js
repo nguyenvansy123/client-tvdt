@@ -25,7 +25,7 @@ export const getNewPost = () => {
         dispatch({ type: postConstants.GET_NEW_POST_REQUEST })
         const res = await axios.get(`/post/getNewPost`)
         if (res.status === 200) {
-            console.log(res.data);
+            // console.log(res.data);
             dispatch({
                 type: postConstants.GET_NEW_POST_SUCCESS,
                 payload: res.data

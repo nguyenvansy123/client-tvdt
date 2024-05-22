@@ -29,8 +29,6 @@ export const Layout = () => {
         }
     }, [auth.authenticate, dispatch]);
 
-
-
     return (
         <>
             <Header />

@@ -28,7 +28,7 @@ export const signup = (user, navigate) => {
         //   user
         // }
         // })
-
+      
         toast.success(res.data.message)
         navigate("/login")
 
@@ -54,7 +54,7 @@ export const login = (user, navigate) => {
           const { token, user } = res.data;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-
+          console.log(res.data);
           dispatch({
             type: authConstants.LOGIN_SUCCESS,
             payload: {
