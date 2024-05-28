@@ -26,3 +26,8 @@ body {
 .hide{
   display: none;
 }
+.group-btn {
+  display: flex;
+  justify-content: end;
+  padding-top: 50px;
+}

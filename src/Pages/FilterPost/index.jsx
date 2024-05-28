@@ -61,11 +61,9 @@ export const FilterPost = () => {
                     </div>
                     <Loader isLoading={loading} >
                         {
-                            articles.length > 0 && <ListItem data={articles} slug={slug} />
+                            articles.length > 0 ? <ListItem data={articles} slug={slug} />:<h2 className='text-center m-5'>chưa có tài liệu nào cả</h2>
                         }
                     </Loader>
-
-                    {/* <ListItem /> */}
                 </div>
             </section>
         </section >

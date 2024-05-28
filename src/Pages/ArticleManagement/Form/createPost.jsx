@@ -153,6 +153,7 @@ export const CreatePost = ({ ...props }) => {
                                             filePDF ?
                                                 <iframe
                                                     src={filePDF}
+                                                    id="frame1"
                                                     style={{ width: "100%", height: "100%" }}
                                                 />
 
@@ -163,7 +164,7 @@ export const CreatePost = ({ ...props }) => {
                                                 </>
                                                 )
                                         }
-                                        <input type="file" onChange={(e) => handleFile(e)} accept="application/pdf" />
+                                        <input type="file" onChange={(e) => handleFile(e)} accept="application/*" />
                                     </div>
                                     <div className="file-uploaded-row">
                                         <FaRegFileImage />

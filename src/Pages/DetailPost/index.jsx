@@ -55,8 +55,9 @@ export const DetailPost = () => {
     const download = (filename, id) => {
         if (!auth.authenticate)
             return window.alert("Bạn phải đăng nhập mới tải được tài liệu này");
-    
-        if(auth.user.role == 'thành viên')
+        
+        console.log(auth.user.role,"59");
+        if(auth.user.role !== 'thành viên')
             return window.alert("Bạn phải thành viên mới tải được tài liệu này");
 
         dispatch(downloadFile(filename, id))
@@ -95,10 +96,10 @@ export const DetailPost = () => {
                                     <span className="info-title">Tác giả:</span>
                                     <span className="info-content">{article.publisher}</span>
                                 </div>
-                                <div className="book-info__item">
+                                {/* <div className="book-info__item">
                                     <span className="info-title">Nhà xuất bản:</span>
                                     <span className="info-content">{article.publisher}</span>
-                                </div>
+                                </div> */}
                                 <div className="book-info__item">
                                     <span className="info-title">Ngày đăng bài</span>
                                     <span className="info-content">{formatDay(article.createdAt)}</span>

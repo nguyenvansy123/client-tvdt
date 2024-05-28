@@ -19,6 +19,7 @@ import isLogin from './helpers/isLogin';
 import { Navigate } from "react-router-dom";
 import { ResetPassword } from './Pages/ResetPassword';
 import { FilterPost } from './Pages/FilterPost';
+import { ContactPage } from './Pages/ContactPage';
 
 
 const router = createBrowserRouter([
@@ -36,7 +37,8 @@ const router = createBrowserRouter([
       { path: "danh-muc/:slug", element: <ArticleManagement /> },
       { path: "article-management", element: <PrivateRoute component={ArticleManagement} /> },
       { path: "profile", element: <Profile /> },
-      { path: "phan-loai/:slug", element: <FilterPost /> }
+      { path: "phan-loai/:slug", element: <FilterPost /> },
+      { path: "contact", element: <ContactPage /> }
     ]
   },
   { path: "reset-password/:userId", element: <ResetPassword /> }

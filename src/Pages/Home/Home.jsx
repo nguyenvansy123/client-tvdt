@@ -29,17 +29,17 @@ export const Home = () => {
           {/* <a href="#" className="books-wrap__view-all fs-5">Xem tất cả</a> */}
         </div>
         {
-          newArticles.length > 0 ? <ListItem data={newArticles} slug="new-articles" /> : <h2>chưa tài liệu được tải nên</h2>
+          newArticles.length > 0 ? <ListItem data={newArticles} slug="new-articles" /> : <h2 className='text-center m-5'>chưa tài liệu được tải nên</h2>
         }
 
       </section>
-      <section className="books-wrap">
+      <section className="books-wrap mb-5">
         <div className="books-wrap__title">
-          <h2>Tài liệu xem nhiều</h2>
+          <h2>Tài liệu được tải nhiều</h2>
           {/* <a href="#" className="books-wrap__view-all fs-5">Xem tất cả</a> */}
         </div>
         {
-          topDownloadArticles.length > 0 ? <ListItem data={topDownloadArticles} slug="top-dowload-articles" /> : <h2>chưa có tài liệu nào được tải xuống</h2>
+          topDownloadArticles.length > 0 ? <ListItem data={topDownloadArticles} slug="top-dowload-articles" /> : <h2 className='text-center m-5'>chưa có tài liệu nào được tải xuống</h2>
         }
       </section>
     </section>
