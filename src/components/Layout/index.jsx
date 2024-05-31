@@ -32,10 +32,10 @@ export const Layout = () => {
     return (
         <>
             <Header />
-            <main id='page-container'>
+            {/* <main id='page-container'>
                 <div className="container">
-                    <div className="row">
-                        <aside id="sidebar" className="col-md-4 col-lg-3">
+                    <div className="row"> */}
+            {/* <aside id="sidebar" className="col-md-4 col-lg-3">
                             <section className="sidebar-widget" id="member-widget">
                                 {
                                     auth.authenticate ?
@@ -63,17 +63,22 @@ export const Layout = () => {
                                 }
                             </section>
                             <Sidebar />
-                        </aside>
+                        </aside> */}
 
-                        <section className='col-md-8 col-lg-9'>
+            {/* <section className='col-md-8 col-lg-9'>
                             <div className="main-content">
                                 <Outlet />
                             </div>
                         </section>
                     </div>
                 </div>
-            </main>
-            <Footer />
+            </main> */}
+
+            <div className="main-content">
+                <Outlet />
+            </div>
+
+            {/* <Footer /> */}
 
             <ToastContainer
                 position="top-right"

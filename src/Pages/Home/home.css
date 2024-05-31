@@ -1,4 +1,4 @@
-.books-wrap__title {
+/* .books-wrap__title {
     border-bottom: 1px solid #dbdbdb;
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -55,7 +55,7 @@
 
 .books-wrap__item-info li a{
 font-size: 1.8rem;
-}
+} */
 
 
 
@@ -66,7 +66,7 @@ font-size: 1.8rem;
 
 
 /* ------------------------- */
-#container {
+/* #container {
     max-width: 980px;
     height: auto;
     margin: 0 auto;
@@ -188,11 +188,11 @@ font-size: 1.8rem;
 
 #create-btn:hover {
     opacity: .7;
-}
+} */
 
 /* --------------- */
 
-.post-list-item {
+/* .post-list-item {
     width: 100%;
     height: auto;
     padding: 0 100px;
@@ -212,7 +212,7 @@ font-size: 1.8rem;
 .item .item-img {
     width: 14rem;
     height: 10rem;
-    /* padding: 1rem 1rem; */
+
 }
 
 .item-content {
@@ -316,11 +316,10 @@ font-size: 1.8rem;
 .pagination .active {
     background-color: var(--background-color);
     color: white;
-}
+} */
 
 /* ---------------- */
-#post-content {
-    /* width: 100%; */
+/* #post-content {
     height: 200px;
     background-color: #666666;
 }
@@ -333,4 +332,4 @@ font-size: 1.8rem;
 #post-content .row .c-4 {
     height: 200px;
     background-color: #00AFEF;
-}
+} */

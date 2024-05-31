@@ -1,4 +1,4 @@
-.mainDiv {
+/* .mainDiv {
     display: flex;
     min-height: 100%;
     align-items: center;
@@ -106,4 +106,4 @@ button[disabled] {
     100% {
         transform: rotate(360deg);
     }
-}
+} */

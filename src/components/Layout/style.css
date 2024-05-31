@@ -1,4 +1,4 @@
-#page-container {
+/* #page-container {
     padding-bottom: 60px;
 }
 
@@ -145,10 +145,10 @@
 .btn_3.active,.btn_3.active:hover {
     background-color: var(--background-color);
     color: white;
-}
+} */
 
 /* ------------------- */
-.cs_modal {
+/* .cs_modal {
     background-color: #fef1f2;
 }
 
@@ -244,4 +244,4 @@ input#check_box {
     display: block;
     cursor: pointer;
     color: #7e7172;
-}
+} */
