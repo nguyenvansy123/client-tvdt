@@ -1,7 +1,17 @@
 import React from 'react'
+import { Badge } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
 export const TableModal = ({ title, data }) => {
+    console.log(data);
+
+    const checkStatus = (value) => {
+        if (value == "đã được phê duyệt")
+            return (<Badge bg="success">success</Badge>)
+        else
+            return (<Badge bg="warning" text="dark">Warning</Badge>)
+    }
+
     return (
         <>
             <table className="table align-middle mb-0 bg-white">
@@ -13,16 +23,24 @@ export const TableModal = ({ title, data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Array.from({ length: data?.length }).map((_, i) => (
+                    {data.map((_, i) => (
                         <tr key={i} >
                             {
-                                Array.from({ length: Object.keys(data[i])?.length }).map(
-                                    (_, index) =>
-                                    (
-                                        <td key={index} className='fs-4'>{data[i][Object.keys(data[i])[index]]}</td>
-                                    )
-                                )
+                                // Array.from({ length: Object.keys(data[i])?.length }).map(
+                                //     (_, index) =>
+                                //     (
+                                //         <td key={index} className='fs-4'>{data[i][Object.keys(data[i])[index]]}</td>
+                                //     )
+
+                                // )
                             }
+                            {/* publisher :    "Bs CkI: Phạm Văn Uy, Ths. Bs: Lương Ngọc Diễm Hằng, CN. Đd: Phạm Đăng Khoa"
+                            status     :     "đã được phê duyệt"
+                            title :"Chỉnh nha phẫu thuật hay phẫu thuật chỉnh nha" */}
+                            <td className='fs-4'>{_.title}</td>
+                            <td className='fs-4'>{_.publisher}</td>
+                            <td className='fs-4'>{checkStatus(_.status)}</td>
+                            <td className='fs-4'>{_.actionbtn}</td>
                         </tr>
                     ))}
                 </tbody>

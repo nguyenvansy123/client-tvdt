@@ -61,7 +61,7 @@ export const DetailPost = () => {
             return window.alert("Bạn phải thành viên mới tải được tài liệu này");
         const downloadUrl = `https://drive.google.com/uc?id=${filename}&export=download`
         window.location.href = downloadUrl;
-        // dispatch(downloadFile(filename, id))
+        dispatch(downloadFile(filename, id))
     }
     console.log();
     return (

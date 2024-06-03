@@ -8,6 +8,9 @@ import { TableModal } from '../../components/TableModal';
 import { CreatePost } from './Form/createPost';
 import { ShowPost } from './Form/showPost';
 import { EditPost } from './Form/editPost';
+import { IoEyeSharp } from 'react-icons/io5';
+import { FaFilePen } from "react-icons/fa6";
+import { FaTrash } from 'react-icons/fa';
 
 export const ArticleManagement = () => {
     const dispatch = useDispatch();
@@ -59,7 +62,10 @@ export const ArticleManagement = () => {
     };
 
     const deletePost = (_id) => {
-        dispatch(deletePostById(_id, updateData))
+
+        const checkDelete = window.confirm("Bạn có muốn xóa bài đăng này không")
+        if (checkDelete)
+            dispatch(deletePostById(_id, updateData))
     }
 
     const updateData = () => {
@@ -72,9 +78,9 @@ export const ArticleManagement = () => {
 
 
     const modifiedPost = article?.postForUser?.map(_post => {
-        const showbtn = <button className='btn btn-info border-black fs-5 text-white' onClick={() => showDetailPost(_post)}>Show</button>;
-        const editbtn = <button className='btn btn-warning border-black fs-5 text-white mx-2' onClick={() => handleShow3(_post)}>Edit</button>;
-        const deletebtn = <button className='btn btn-danger border-black fs-5' onClick={() => deletePost(_post._id)} >Delete</button>;
+        const showbtn = <button className='btn border-black fs-5 ' onClick={() => showDetailPost(_post)} title='view' ><IoEyeSharp /></button>;
+        const editbtn = <button className='btn border-black fs-5 mx-2' onClick={() => handleShow3(_post)} title='edit' ><FaFilePen /></button>;
+        const deletebtn = <button className='btn border-black fs-5' onClick={() => deletePost(_post._id)} title='delete' ><FaTrash /></button>;
         const actionbtn = <div className="d-flex">{showbtn} {editbtn} {deletebtn}</div>;
         return {
             title: _post.title,
