@@ -55,12 +55,13 @@ export const DetailPost = () => {
     const download = (filename, id) => {
         if (!auth.authenticate)
             return window.alert("Bạn phải đăng nhập mới tải được tài liệu này");
-        
-        console.log(auth.user.role,"59");
-        if(auth.user.role !== 'thành viên')
-            return window.alert("Bạn phải thành viên mới tải được tài liệu này");
 
-        dispatch(downloadFile(filename, id))
+        console.log(auth.user.role, "59");
+        if (auth.user.role !== 'thành viên')
+            return window.alert("Bạn phải thành viên mới tải được tài liệu này");
+        const downloadUrl = `https://drive.google.com/uc?id=${filename}&export=download`
+        window.location.href = downloadUrl;
+        // dispatch(downloadFile(filename, id))
     }
     console.log();
     return (
@@ -112,13 +113,13 @@ export const DetailPost = () => {
                                     <span className="info-title">File nội dung:</span>
                                     <span className="info-content">
                                         <a
-                                            className="btn-bvdk btn-sm btn-rounded"
+                                            className="btn btn-primary fs-5"
                                             // href={article.linkDownload}
                                             target="_blank"
                                             onClick={() => download(article.linkDownload, article._id)}
                                             download
                                         >
-                                            <GrDownloadOption /> Tải xuống
+                                            Tải xuống
                                         </a>
                                     </span>
                                 </div>
@@ -139,7 +140,7 @@ export const DetailPost = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="book-content mb-5" style={{ height: "auto" }}>
+                    <div className="book-content mb-5" style={{ height: "auto", marginTop: "1rem" }}>
                         {
                             auth.authenticate ? <iframe src={generatePublicUrlFile(article.linkDownload)} width="100%" height="1071.1px" title={id}></iframe> : <h2 className='mt-5 text-center'>vui lòng đăng nhập để có thể được xem tài liệu</h2>
                         }
